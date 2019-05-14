@@ -1,0 +1,69 @@
+<div class="main-content">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header">
+            <h4>Personas que conforman el discipulado</h4>
+          </div>
+          <div class="card-body">
+              <nav aria-label="breadcrumb">
+                  <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a [routerLink]="['/academia']" routerLinkActive="active">Listado Academias</a></li>
+                    <li class="breadcrumb-item"><a>Usuarios en academia</a></li>
+                  </ol>
+                </nav>
+              <form #documentoForm="ngForm" (ngSubmit)="addDocumento(documentoForm)">
+                  <label>Nombre de lideres</label>
+                  <br>
+                  <button class="btn btn-warning btn-sm acciontabla" (click)="buscarUsuario(documento)">
+                    <i class="nc-icon nc-zoom-split"></i>
+                  </button>       
+                  <div class="table-responsive">
+                    <table class="table">
+                        <tr>
+                            <th>Lider</th>
+                            <th class="text-right">Acción</th>
+                        </tr>
+                        <tr>
+                          <td>Pablo Zometa</td>
+                          <td class="text-right">
+                              <button class="btn btn-danger btn-sm acciontabla" (click)="deleteDocumento(documento)">
+                                  <i class="nc-icon nc-simple-remove"></i>
+                              </button>
+                          </td>
+                        </tr>
+                    </table>
+                  </div>  
+                  <br>
+                  <label>Personas que asisten a esta academia</label>
+                  <br>
+                  <button class="btn btn-warning btn-sm acciontabla" (click)="buscarUsuario(documento)">
+                    <i class="nc-icon nc-zoom-split"></i>
+                  </button>  
+                  <div class="table-responsive">
+                      <table class="table">
+                          <tr>
+                              <th>Discipulo</th>
+                              <th class="text-right">Acción</th>
+                          </tr>
+                          <tr>
+                            <td>Persona 1</td>
+                            <td class="text-right">
+                                <button class="btn btn-danger btn-sm acciontabla" (click)="deleteDocumento(documento)">
+                                    <i class="nc-icon nc-simple-remove"></i>
+                                </button>
+                            </td>
+                          </tr>
+                      </table>
+                    </div>  
+                  <div class="card-footer text-center">
+                      <button [disabled]="!documentoForm.valid" type="submit" class="btn btn-info">Agregar Usuarios</button>
+                    </div>
+                </form>                
+          </div>  
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  

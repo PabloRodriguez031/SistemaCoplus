@@ -8,7 +8,14 @@
         <div class="card-body ">
           <div class="toolbar">
             <button class="btn btn-primary" [routerLink]="['/crear-red']">Crear Red</button>
-          </div>              
+          </div>  
+          <label>Seleccione la iglesia de la cual desea ver sus redes</label>         
+          <div class="form-group">             
+          <select name="" id="" class="form-control">
+            <option value="{{iglesia.id}}" *ngFor="let iglesia of iglesias">{{iglesia.data['nombre']}}</option>
+          </select>
+          </div>
+          <br>
           <div class="col-md-12">
             <div class="table-responsive">
             <table class="table">

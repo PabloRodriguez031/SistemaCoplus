@@ -5,23 +5,20 @@ import * as firebase from 'firebase';
 import { NotificationsService } from 'app/servicios/notifications.service';
 
 @Component({
-  selector: 'app-usuario-editar',
-  templateUrl: './usuario-editar.component.html',
-  styleUrls: ['./usuario-editar.component.css']
+  selector: 'app-grupo-editar',
+  templateUrl: './grupo-editar.component.html',
+  styleUrls: ['./grupo-editar.component.css']
 })
-export class UsuarioEditarComponent implements OnInit {
+export class GrupoEditarComponent implements OnInit {
 
   documento = [] as any;
-  coleccion = 'usuario';
+  coleccion = 'grupo';
 
   documentos2 = {} as any;
   coleccion2 = 'red';
 
   documentos3 = {} as any;
   coleccion3 = 'discipulado';
-
-  documentos4 = {} as any;
-  coleccion4 = 'grupo';
 
   constructor(private route: ActivatedRoute, private apiService: ApiService, private notificationsService: NotificationsService) { }
 
@@ -60,30 +57,20 @@ export class UsuarioEditarComponent implements OnInit {
             });
         });
       });
-
-      firebase.firestore().collection(this.coleccion4).onSnapshot((snapshot) => {
-        this.documentos4 = [] as any;
-        snapshot.forEach(doc => {
-            this.documentos4.push({
-                id: doc.id,
-                data: doc.data()
-            });
-        });
-      });
     }
 
     updateDocumento(){      
       this.notificationsService.showConfirmationSwal().then(resultado => {
-        if(resultado.value){
+        if(resultado){
           this.notificationsService.showLoadingSwal('Enviando datos...', 'Espere por favor');
           this.apiService.updateDocumento(this.coleccion, {
             nombre: this.documento.data['nombre'],
-            apellido: this.documento.data['apellido'],
-            correo: this.documento.data['correo'],
-            telefono: this.documento.data['telefono'],
-            fecha_nacimiento: this.documento.data['fecha_nacimiento'],
-            graduado: this.documento.data['graduado'],
-            red: this.documento.data['red']
+            red: this.documento.data['red'],
+            discipulado: this.documento.data['discipulado'],
+            dia: this.documento.data['dia'],
+            direccion: this.documento.data['direccion'],
+            zona: this.documento.data['zona'],
+            hora: this.documento.data['hora']
           }, this.documento.id).then(respuesta => {
             this.notificationsService.showSwal('Editado', 'La red ha sido editada con éxito', 'success');
           }).catch(error => {
