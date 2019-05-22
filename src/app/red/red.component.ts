@@ -15,6 +15,8 @@ export class RedComponent implements OnInit{
 
   iglesias :any = []; 
 
+  documentos_filtrados :any = [];
+
 
   constructor(public apiService: ApiService, private router: Router, private notificationsService: NotificationsService ) { }
 
@@ -42,6 +44,7 @@ export class RedComponent implements OnInit{
           }
         });
       });
+        this.documentos_filtrados = this.documentos.slice();
       });
     });  
   }
@@ -63,4 +66,16 @@ export class RedComponent implements OnInit{
   editDocumento(documento) {
     this.router.navigate(['/editar-red',documento.id])
   }
+
+  filtro_iglesia(evento){
+    console.log(evento);
+    if(evento.target.value == 1){
+      this.documentos_filtrados = this.documentos.slice();
+    }else{
+      this.documentos_filtrados = this.documentos.filter(red => {
+        return red.data['iglesia'] === evento.target.value;
+      });
+    }
+  }
+
 }

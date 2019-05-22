@@ -15,8 +15,7 @@ export class ApiService {
 
     getDocumentoById(coleccion: string, id){
         return firebase.firestore().collection(coleccion).doc(id).get();
-
-    }
+    }    
 
     addDocumento(coleccion: string, documento: any) {
         return firebase.firestore().collection(coleccion).doc().set(documento);

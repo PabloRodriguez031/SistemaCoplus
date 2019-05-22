@@ -55,7 +55,9 @@ export class GrupoFormComponent implements OnInit {
           dia: form.value.dia,
           direccion: form.value.direccion,
           zona: form.value.zona,
-          hora: form.value.hora
+          hora: form.value.hora,
+          gruposIds: [],
+          lideresIds: []
         }).then(respuesta => {
           this.notificationsService.showSwal('Creado', 'El grupo ha sido creado con éxito', 'success');
           form.resetForm();

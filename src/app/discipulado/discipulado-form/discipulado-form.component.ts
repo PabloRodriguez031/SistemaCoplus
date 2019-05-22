@@ -40,7 +40,9 @@ export class DiscipuladoFormComponent implements OnInit {
           red: form.value.red,
           direccion: form.value.direccion,
           zona: form.value.zona,
-          hora: form.value.hora
+          hora: form.value.hora,
+          discipulosIds: [],
+          lideresIds: []
         }).then(respuesta => {
           this.notificationsService.showSwal('Creado', 'El discipulado ha sido creado con éxito', 'success');
           form.resetForm();

@@ -1,3 +1,69 @@
+<div class="modal fade" id="formModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h5 class="modal-title">
+                  Agregar lideres a discipulado
+                </h5>
+            </div>
+            <div class="modal-body">
+                <div class="table-responsive">
+                    <table class="table">
+                      <tr>
+                        <th>Nombre de lider</th>
+                        <th class="text-right">Agregar</th>
+                      </tr> 
+                      <tr *ngFor="let liderRed of lideresRed">
+                        <td>{{liderRed.data['nombre']}} {{liderRed.data['apellido']}}</td>
+                        <td class="text-right">
+                            <button class="btn btn-warning btn-sm acciontabla" (click)="agregarLider(liderRed.id);">
+                              <i class="nc-icon nc-simple-add"></i>
+                            </button>   
+                        </td>
+                      </tr>                     
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="formModal2" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h5 class="modal-title">
+                  Agregar usuarios a discipulado
+                </h5>
+            </div>
+            <div class="modal-body">
+                <div class="table-responsive">
+                    <table class="table">
+                      <tr>
+                        <th>Nombre y apellido</th>
+                        <th class="text-right">Agregar</th>
+                      </tr> 
+                      <tr *ngFor="let usuarioRed of usuariosRed">
+                        <td>{{usuarioRed.data['nombre']}} {{usuarioRed.data['apellido']}}</td>
+                        <td class="text-right">
+                            <button class="btn btn-warning btn-sm acciontabla" (click)="agregarUsuario(usuarioRed.id);">
+                              <i class="nc-icon nc-simple-add"></i>
+                            </button>   
+                        </td>
+                      </tr>                     
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 <div class="main-content">
   <div class="row">
     <div class="col-md-12">
@@ -15,7 +81,7 @@
             <form #documentoForm="ngForm" (ngSubmit)="addDocumento(documentoForm)">
                 <label>Nombre de lideres</label>
                 <br>
-                <button class="btn btn-warning btn-sm acciontabla" (click)="buscarUsuario(documento)">
+                <button class="btn btn-warning btn-sm acciontabla" (click)="openForm();">
                   <i class="nc-icon nc-zoom-split"></i>
                 </button>       
                 <div class="table-responsive">
@@ -24,10 +90,10 @@
                           <th>Lider</th>
                           <th class="text-right">Acción</th>
                       </tr>
-                      <tr>
-                        <td>Pablo Zometa</td>
+                      <tr *ngFor="let liderDiscipulado of lideresDiscipulado">
+                        <td>{{liderDiscipulado.data['nombre']}}  {{liderDiscipulado.data['apellido']}}</td>
                         <td class="text-right">
-                            <button class="btn btn-danger btn-sm acciontabla" (click)="deleteDocumento(documento)">
+                            <button class="btn btn-danger btn-sm acciontabla" (click)="deleteLider(liderDiscipulado.id)">
                                 <i class="nc-icon nc-simple-remove"></i>
                             </button>
                         </td>
@@ -37,7 +103,7 @@
                 <br>
                 <label>Personas que asisten a este discipulado</label>
                 <br>
-                <button class="btn btn-warning btn-sm acciontabla" (click)="buscarUsuario(documento)">
+                <button class="btn btn-warning btn-sm acciontabla" (click)="openForm2();">
                   <i class="nc-icon nc-zoom-split"></i>
                 </button>  
                 <div class="table-responsive">
@@ -46,19 +112,16 @@
                             <th>Discipulo</th>
                             <th class="text-right">Acción</th>
                         </tr>
-                        <tr>
-                          <td>Persona 1</td>
+                        <tr *ngFor="let usuarioDiscipulado of usuariosDiscipulado">
+                          <td>{{usuarioDiscipulado.data['nombre']}} {{usuarioDiscipulado.data['apellido']}}</td>
                           <td class="text-right">
-                              <button class="btn btn-danger btn-sm acciontabla" (click)="deleteDocumento(documento)">
+                              <button class="btn btn-danger btn-sm acciontabla" (click)="deleteUsuario(usuarioDiscipulado.id)">
                                   <i class="nc-icon nc-simple-remove"></i>
                               </button>
                           </td>
                         </tr>
                     </table>
                   </div>  
-                <div class="card-footer text-center">
-                    <button [disabled]="!documentoForm.valid" type="submit" class="btn btn-info">Agregar Usuarios</button>
-                  </div>
               </form>                
         </div>  
       </div>
