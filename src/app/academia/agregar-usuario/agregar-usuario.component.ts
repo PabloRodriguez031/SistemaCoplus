@@ -127,16 +127,24 @@ export class AgregarUsuarioComponent implements OnInit {
     });
   }
 
-  deleteLider(id){
+  deleteLider(id, index){
     this.notificationsService.showConfirmationSwal().then(resultado => {
       if(resultado.value){
+
+        this.lideresAcademia.splice(index, 1);
+
+        let lideresRestantes = [];
+
+        this.lideresAcademia.forEach(lideres =>{
+          lideresRestantes.push(lideres.id)
+        })
 
         this.apiService.updateDocumento(this.coleccion, { 
           liderAcademiaId: ''
         }, id).then(respuesta => {
-          this.usuariosRed.splice(this.usuariosRed.findIndex(discipulo => {
-            return discipulo.id === id;
-          }),1);
+          this.apiService.updateDocumento('academia', {
+            lideresIds: lideresRestantes
+          }, this.documentoId)
           
           this.notificationsService.showSwal('Editado', 'El lider ha sido eliminado con éxito', 'success');
         }).catch(error => {
@@ -150,8 +158,6 @@ export class AgregarUsuarioComponent implements OnInit {
 
   
   filtrarUsuarios(usuarios, campo){
-
-
 
     const usuariosfiltrados = [];    
     usuarios.forEach(usuario => {
@@ -174,6 +180,8 @@ export class AgregarUsuarioComponent implements OnInit {
 
   openForm2() {
     firebase.firestore().collection('usuario').where('red', '==', this.documentos2.data['red']).
+    where('graduado', '==', 'No').
+    where('estudiantesIds', '==', '').
     onSnapshot((snapshot) => {
       this.usuariosRed = [] as any;
       snapshot.forEach(doc => {
@@ -192,12 +200,14 @@ export class AgregarUsuarioComponent implements OnInit {
       if(resultado.value){
         this.notificationsService.showLoadingSwal('Enviando datos...', 'Espere por favor');
 
-        if(!this.documentos2.data['estudiantesIds']){
-          this.documentos2.data['estudiantesIds'] = [];
+        if(!this.documentos2.data['estudiantes']){
+          this.documentos2.data['estudiantes'] = [];
         }        
-        this.documentos2.data['estudiantesIds'].push(id);
+        this.documentos2.data['estudiantes'].push({
+          id: id
+        });
         this.apiService.updateDocumento(this.coleccion2, { 
-          estudiantesIds: this.documentos2.data['estudiantesIds']
+          estudiantes: this.documentos2.data['estudiantes']
         }, this.documentoId).then(respuesta => {
           this.usuariosRed.splice(this.usuariosRed.findIndex(discipulo => {
             return discipulo.id === id;
@@ -225,18 +235,26 @@ export class AgregarUsuarioComponent implements OnInit {
     });
   }
 
-  deleteUsuario(id){
+  deleteUsuario(id, index){
     this.notificationsService.showConfirmationSwal().then(resultado => {
       if(resultado.value){
         
+        this.usuariosAcademia.splice(index, 1);
+
+        let usuariosRestantes = [];
+
+        this.usuariosAcademia.forEach(usuarios => {
+          usuariosRestantes.push(usuarios.id)
+        })
+
         this.apiService.updateDocumento(this.coleccion, { 
           estudiantesIds: ''
         }, id).then(respuesta => {
-          this.usuariosRed.splice(this.usuariosRed.findIndex(discipulo => {
-            return discipulo.id === id;
-          }),1);
+          this.apiService.updateDocumento('academia', {
+            estudiantesIds: usuariosRestantes
+          }, this.documentoId)
           
-          this.notificationsService.showSwal('Editado', 'El lider ha sido eliminado con éxito', 'success');
+          this.notificationsService.showSwal('Editado', 'El estudiante ha sido eliminado con éxito', 'success');
         }).catch(error => {
           console.log(error);
           this.notificationsService.showSwal('Ha ocurrido un error', 'Intentelo nuevamente', 'error');

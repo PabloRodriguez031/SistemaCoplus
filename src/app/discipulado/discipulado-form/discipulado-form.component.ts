@@ -20,6 +20,17 @@ export class DiscipuladoFormComponent implements OnInit {
   constructor(public apiService: ApiService, private notificationsService: NotificationsService) { }
 
   ngOnInit() {
+
+    firebase.firestore().collection(this.coleccion).onSnapshot((snapshot) => {
+      this.documentos = [] as any;
+      snapshot.forEach(doc => {
+          this.documentos.push({
+              id: doc.id,
+              data: doc.data()
+          });
+      });
+    });
+
     firebase.firestore().collection(this.coleccion2).onSnapshot((snapshot) => {
       this.documentos2 = [] as any;
       snapshot.forEach(doc => {
@@ -41,6 +52,7 @@ export class DiscipuladoFormComponent implements OnInit {
           direccion: form.value.direccion,
           zona: form.value.zona,
           hora: form.value.hora,
+          discipuladoPadre: form.value.discipuladoPadre,
           discipulosIds: [],
           lideresIds: []
         }).then(respuesta => {

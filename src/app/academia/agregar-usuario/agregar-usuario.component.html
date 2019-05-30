@@ -90,10 +90,10 @@
                           <th>Lider</th>
                           <th class="text-right">Acción</th>
                       </tr>
-                      <tr *ngFor="let liderAcademia of lideresAcademia">
+                      <tr *ngFor="let liderAcademia of lideresAcademia; let i = index">
                         <td>{{liderAcademia.data['nombre']}}  {{liderAcademia.data['apellido']}}</td>
                         <td class="text-right">
-                          <button class="btn btn-danger btn-sm acciontabla" (click)="deleteLider(liderAcademia.id)">
+                          <button class="btn btn-danger btn-sm acciontabla" (click)="deleteLider(liderAcademia.id, i)">
                             <i class="nc-icon nc-simple-remove"></i>
                          </button>
                         </td>
@@ -112,10 +112,10 @@
                             <th>Estudiantes</th>
                             <th class="text-right">Acción</th>
                         </tr>
-                        <tr *ngFor="let usuarioAcademia of usuariosAcademia">
+                        <tr *ngFor="let usuarioAcademia of usuariosAcademia; let i = index">
                           <td>{{usuarioAcademia.data['nombre']}} {{usuarioAcademia.data['apellido']}}</td>
                           <td class="text-right">
-                            <button class="btn btn-danger btn-sm acciontabla" (click)="deleteUsuario(usuarioAcademia.id)">
+                            <button class="btn btn-danger btn-sm acciontabla" (click)="deleteUsuario(usuarioAcademia.id, i)">
                               <i class="nc-icon nc-simple-remove"></i>
                            </button>
                           </td>

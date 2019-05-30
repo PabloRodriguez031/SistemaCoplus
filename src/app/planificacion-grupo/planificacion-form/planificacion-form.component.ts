@@ -23,9 +23,6 @@ export class PlanificacionFormComponent implements OnInit {
   documentos4 = {} as any;
   coleccion4 = 'usuario';
 
-  documentos5 = {} as any;
-  coleccion5 = 'usuario';
-
   constructor(public apiService: ApiService, private notificationsService: NotificationsService) { }
 
   ngOnInit() {
@@ -53,16 +50,6 @@ export class PlanificacionFormComponent implements OnInit {
       this.documentos4 = [] as any;
       snapshot.forEach(doc => {
           this.documentos4.push({
-              id: doc.id,
-              data: doc.data()
-          });
-      });
-    });
-
-    firebase.firestore().collection(this.coleccion5).onSnapshot((snapshot) => {
-      this.documentos5 = [] as any;
-      snapshot.forEach(doc => {
-          this.documentos5.push({
               id: doc.id,
               data: doc.data()
           });

@@ -70,7 +70,13 @@ export class UsuarioFormComponent implements OnInit {
           telefono: form.value.telefono,
           fecha_nacimiento: form.value.fecha_nacimiento,
           graduado: form.value.graduado,
-          red: form.value.red
+          red: form.value.red,
+          estudiantesIds: '',
+          grupoId: '',
+          discipuloId: '',      
+          liderDiscipuladoId: '',
+          liderGrupoId: '',
+          liderAcademiaId: ''             
         }).then(respuesta =>{
           this.notificationsService.showSwal('Creado', 'El usuario ha sido creado con éxito', 'success');
           form.resetForm();

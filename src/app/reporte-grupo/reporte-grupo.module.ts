@@ -7,6 +7,7 @@ import { ReporteGrupoComponent } from './reporte-grupo.component';
 import { ReporteGrupoRoutes } from './reporte-grupo.routing';
 import { ReporteEditarComponent } from './reporte-editar/reporte-editar.component';
 import { ReporteFormComponent } from './reporte-form/reporte-form.component';
+import { AsistenciaComponent } from './asistencia/asistencia.component';
 
 
 
@@ -16,7 +17,7 @@ import { ReporteFormComponent } from './reporte-form/reporte-form.component';
         RouterModule.forChild(ReporteGrupoRoutes),
         FormsModule
     ],
-    declarations: [ReporteGrupoComponent, ReporteEditarComponent, ReporteFormComponent]
+    declarations: [ReporteGrupoComponent, ReporteEditarComponent, ReporteFormComponent, AsistenciaComponent]
 })
 
 export class ReporteGrupoModule {}

@@ -77,7 +77,10 @@ export class AgregarUsuarioComponent implements OnInit {
 
   openForm() {
     firebase.firestore().collection('usuario').where('graduado', '==', 'Si').
-    where('red', '==', this.documentos2.data['red']).onSnapshot((snapshot) => {
+    where('red', '==', this.documentos2.data['red']).
+    where('liderDiscipuladoId', '==', '').
+    where('discipuloId', '==', '').
+  onSnapshot((snapshot) => {
       this.lideresRed = [] as any;
       snapshot.forEach(doc => {
           this.lideresRed.push({
@@ -129,16 +132,24 @@ export class AgregarUsuarioComponent implements OnInit {
     });
   }
 
-  deleteLider(id){
+  deleteLider(id, index){
     this.notificationsService.showConfirmationSwal().then(resultado => {
       if(resultado.value){
+
+        this.lideresDiscipulado.splice(index, 1);
+
+        let lideresRestantes = [];
+
+        this.lideresDiscipulado.forEach(lideres => {
+          lideresRestantes.push(lideres.id)
+        })
 
         this.apiService.updateDocumento(this.coleccion, { 
           liderDiscipuladoId: ''
         }, id).then(respuesta => {
-          this.usuariosRed.splice(this.usuariosRed.findIndex(discipulo => {
-            return discipulo.id === id;
-          }),1);
+          this.apiService.updateDocumento('discipulado', {
+            lideresIds: lideresRestantes
+          }, this.documentoId)
           
           this.notificationsService.showSwal('Editado', 'El lider ha sido eliminado con éxito', 'success');
         }).catch(error => {
@@ -169,6 +180,8 @@ export class AgregarUsuarioComponent implements OnInit {
 
   openForm2() {
     firebase.firestore().collection('usuario').where('red', '==', this.documentos2.data['red']).
+    where('graduado', '==', 'Si').
+    where('discipuloId', '==', '').
     onSnapshot((snapshot) => {
       this.usuariosRed = [] as any;
       snapshot.forEach(doc => {
@@ -190,6 +203,7 @@ export class AgregarUsuarioComponent implements OnInit {
         if(!this.documentos2.data['discipulosIds']){
           this.documentos2.data['discipulosIds'] = [];
         }        
+        
         this.documentos2.data['discipulosIds'].push(id);
         this.apiService.updateDocumento(this.coleccion2, { 
           discipulosIds: this.documentos2.data['discipulosIds']
@@ -221,16 +235,24 @@ export class AgregarUsuarioComponent implements OnInit {
     });
   }
 
-  deleteUsuario(id){
+  deleteUsuario(id, index){
     this.notificationsService.showConfirmationSwal().then(resultado => {
       if(resultado.value){
+
+        this.usuariosDiscipulado.splice(index, 1);
+
+        let usuariosRestantes = []
+
+        this.usuariosDiscipulado.forEach(usuarios => {
+          usuariosRestantes.push(usuarios.id)
+        })
         
         this.apiService.updateDocumento(this.coleccion, { 
           discipuloId: ''
         }, id).then(respuesta => {
-          this.usuariosRed.splice(this.usuariosRed.findIndex(discipulo => {
-            return discipulo.id === id;
-          }),1);
+          this.apiService.updateDocumento('discipulado', {
+            discipulosIds: usuariosRestantes
+          }, this.documentoId)
           
           this.notificationsService.showSwal('Editado', 'El lider ha sido eliminado con éxito', 'success');
         }).catch(error => {

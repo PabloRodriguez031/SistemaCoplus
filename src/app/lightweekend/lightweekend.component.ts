@@ -44,7 +44,7 @@ export class LightweekendComponent implements OnInit {
           genero: form.value.genero,
           estado_civil: form.value.estado_civil,
           direccion: form.value.direccion,
-          fecha: form.value.fecha,
+          fecha_nacimiento: form.value.fecha_nacimiento,
           asiste_grupo: form.value.asiste_grupo,
           red: form.value.red
         }).then(respuesta =>{

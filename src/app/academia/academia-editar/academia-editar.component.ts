@@ -61,7 +61,7 @@ export class AcademiaEditarComponent implements OnInit {
 
     updateDocumento(){      
       this.notificationsService.showConfirmationSwal().then(resultado => {
-        if(resultado){
+        if(resultado.value){
           this.notificationsService.showLoadingSwal('Enviando datos...', 'Espere por favor');
           this.apiService.updateDocumento(this.coleccion, {
             red: this.documento.data['red'],

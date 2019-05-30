@@ -3,6 +3,8 @@ import { Routes } from '@angular/router';
 import { ReporteDiscipuladoComponent } from './reporte-discipulado.component';
 import { ReporteEditarComponent } from './reporte-editar/reporte-editar.component';
 import { ReporteFormComponent } from './reporte-form/reporte-form.component';
+import { AsistenciaComponent } from './asistencia/asistencia.component';
+
 
 
 
@@ -17,5 +19,8 @@ export const ReporteDiscipuladoRoutes: Routes = [{
     },{
         path: 'editar-reporte-discipulado/:id',
         component: ReporteEditarComponent
+    },{
+        path: 'asistencia-discipulado/:id',
+        component: AsistenciaComponent
     }]
 }];

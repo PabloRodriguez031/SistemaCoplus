@@ -65,6 +65,10 @@ export class AcademiaComponent implements OnInit {
     this.router.navigate(['/editar-academia',documento.id])
   }
 
+  ingresarNotas(documento){
+    this.router.navigate(['/ingreso-notas',documento.id])
+  }
+
   agregarUsuario(documento){
     this.router.navigate(['/agregar-usuario-academia',documento.id])
   }

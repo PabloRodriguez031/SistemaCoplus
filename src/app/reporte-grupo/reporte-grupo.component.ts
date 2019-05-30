@@ -86,4 +86,8 @@ export class ReporteGrupoComponent implements OnInit {
   editDocumento(documento) {
     this.router.navigate(['/editar-reporte',documento.id])
   }
+
+  asistencia(documento) {
+    this.router.navigate(['/asistencia-grupo',documento.id])
+  }
 }

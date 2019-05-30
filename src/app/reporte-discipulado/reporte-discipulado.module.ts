@@ -7,6 +7,7 @@ import { ReporteEditarComponent } from './reporte-editar/reporte-editar.componen
 import { ReporteFormComponent } from './reporte-form/reporte-form.component';
 import { ReporteDiscipuladoRoutes } from './reporte-discipulado.routing';
 import { ReporteDiscipuladoComponent } from './reporte-discipulado.component';
+import { AsistenciaComponent } from './asistencia/asistencia.component';
 
 
 
@@ -16,7 +17,7 @@ import { ReporteDiscipuladoComponent } from './reporte-discipulado.component';
         RouterModule.forChild(ReporteDiscipuladoRoutes),
         FormsModule
     ],
-    declarations: [ReporteDiscipuladoComponent, ReporteEditarComponent, ReporteFormComponent]
+    declarations: [ReporteDiscipuladoComponent, ReporteEditarComponent, ReporteFormComponent, AsistenciaComponent]
 })
 
 export class ReporteDiscipuladoModule {}
