@@ -46,6 +46,10 @@ export class NotasComponent implements OnInit {
       if(resultado.value){
         this.notificationsService.showLoadingSwal('Enviando datos...', 'Espere por favor');
 
+        if(!this.documentos2.data['estudiantes']){
+          this.documentos2.data['estudiantes'] = []
+        }
+
         const indice = this.documentos2.data['estudiantes'].findIndex(estudiante =>{
           return estudiante.id === id;
         })
@@ -54,8 +58,8 @@ export class NotasComponent implements OnInit {
           this.documentos2.data['estudiantes'][indice]['notas'] = []
         }
 
-        this.documentos2.data['estudiantes'][indice]['notas'][0] = {
-          id: 'prueba',
+        this.documentos2.data['estudiantes'][indice]['notas'][1] = {
+          id: 'prueba 2',
           nota: nota
         }
 

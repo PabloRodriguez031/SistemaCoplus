@@ -17,14 +17,12 @@
             <table class="table">
               <tr>
                 <th>Nombre</th>
-                <th>Fecha de Asistencia</th>        
                 <th class="text-right">Acción</th>
               </tr>
-              <tr>
-                  <td>Pablo Rodriguez</td>
-                  <td>28-may-2019</td>                                     
+              <tr *ngFor="let usuarioDicipulado of usuariosDicipulado">
+                  <td>{{usuarioDicipulado.data['nombre']}} {{usuarioDicipulado.data['apellido']}}</td>
                   <td class="text-right">
-                    <button class="btn btn-success btn-sm acciontabla" (click)="marcarAsistencia(documento)">
+                    <button class="btn btn-success btn-sm acciontabla" (click)="marcarAsistencia(usuarioDicipulado.id)">
                       Tomar asistencia <i class="nc-icon nc-check-2"></i> 
                     </button>                  
                 </td>

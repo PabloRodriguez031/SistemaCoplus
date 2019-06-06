@@ -66,8 +66,8 @@ export class ReporteDiscipuladoComponent implements OnInit {
     this.router.navigate(['/editar-reporte-discipulado',documento.id])
   }
 
-  asistencia(documento) {
-    this.router.navigate(['/asistencia-discipulado',documento.id])
+  asistencia(documento, discipulado) {
+    this.router.navigate(['/asistencia-discipulado',documento.id, discipulado])
   }
 
 
