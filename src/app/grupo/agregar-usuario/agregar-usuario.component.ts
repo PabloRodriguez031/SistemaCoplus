@@ -158,9 +158,6 @@ export class AgregarUsuarioComponent implements OnInit {
   }
 
   filtrarUsuarios(usuarios, campo){
-
-
-
     const usuariosfiltrados = [];    
     usuarios.forEach(usuario => {
       let existe = false;
@@ -191,7 +188,6 @@ export class AgregarUsuarioComponent implements OnInit {
               data: doc.data()
           });
         });
-        this.filtrarUsuarios(this.usuariosRed, 'gruposIds');
         $('#formModal2').modal('toggle');
     });
   }
@@ -204,7 +200,9 @@ export class AgregarUsuarioComponent implements OnInit {
         if(!this.documentos2.data['gruposIds']){
           this.documentos2.data['gruposIds'] = [];
         }        
-        this.documentos2.data['gruposIds'].push(id);
+        this.documentos2.data['gruposIds'].push({
+          id: id
+        });
         this.apiService.updateDocumento(this.coleccion2, { 
           gruposIds: this.documentos2.data['gruposIds']
         }, this.documentoId).then(respuesta => {

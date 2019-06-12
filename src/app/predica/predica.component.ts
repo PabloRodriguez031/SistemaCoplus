@@ -24,8 +24,9 @@ export class PredicaComponent implements OnInit {
               id: doc.id,
               data: doc.data()
           });
+
+        });
       });
-    });
   }
 
   deleteDocumento(documento) {    

@@ -16,12 +16,14 @@
                   <th>Nombre</th>
                   <th>Mes</th>
                   <th>Semana</th>
+                  <th>Fecha de creación</th>
                   <th class="text-right">Acción</th>
                 </tr>
                 <tr *ngFor="let documento of documentos">
                     <td>{{documento.data['nombre']}}</td>
                     <td>{{documento.data['mes']}}</td>
                     <td>{{documento.data['semana']}}</td>
+                    <td>{{documento.data['fecha_creacion']}}</td>
                     <td class="text-right">
                       <button class="btn btn-warning btn-sm acciontabla" (click)="editDocumento(documento)">
                           <i class="nc-icon nc-zoom-split"></i>

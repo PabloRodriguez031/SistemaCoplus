@@ -207,6 +207,7 @@ export class AgregarUsuarioComponent implements OnInit {
           id: id
         });
         this.apiService.updateDocumento(this.coleccion2, { 
+          estudiantesIds: this.documentos2.data['estudiantes'],
           estudiantes: this.documentos2.data['estudiantes']
         }, this.documentoId).then(respuesta => {
           this.usuariosRed.splice(this.usuariosRed.findIndex(discipulo => {
